@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title> {{ product.title }} </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="container flex">
+      <p>{{ product.brand }} {{ product.category }}</p>
+      <img
+        mat-card-sm-image
+        src="{{ product.thumbnail }}"
+        alt="{{ product.title }}"
+      />
+    </div>
+  </mat-card-content>
+</mat-card>
