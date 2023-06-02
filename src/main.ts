@@ -1,6 +1,11 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ToolbarComponent } from './app/components/toolbar/toolbar.component';
-import { provideRouter, RouterOutlet } from '@angular/router';
+import {
+  provideRouter,
+  RouterOutlet,
+  withPreloading,
+  PreloadAllModules,
+} from '@angular/router';
 import { bootstrapApplication, BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component, importProvidersFrom } from '@angular/core';
@@ -22,6 +27,6 @@ bootstrapApplication(App, {
       BrowserAnimationsModule,
       HttpClientModule
     ),
-    provideRouter(appRoutes),
+    provideRouter(appRoutes, withPreloading(PreloadAllModules)),
   ],
 });

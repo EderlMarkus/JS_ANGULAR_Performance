@@ -1,8 +1,5 @@
-import { Table } from './../../../../accountingapi/accountingapi-ui/accountingapi-ui-web/src/app/gen/model/table';
 import { Routes } from '@angular/router';
-import { AboutComponent } from '../components/about/about.component';
 import { HomeComponent } from '../components/home/home.component';
-import { TableComponent } from '../components/table/table.component';
 export const appRoutes: Routes = [
   {
     path: '',
@@ -18,8 +15,6 @@ export const appRoutes: Routes = [
   {
     path: 'table',
     loadChildren: () =>
-      import('../components/table/table.routes').then(
-        (c) => c.tableChildRoutesModule
-      ),
+      import('./table.routes').then((c) => c.tableChildRoutesModule),
   },
 ];

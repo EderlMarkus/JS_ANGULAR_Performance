@@ -5,12 +5,16 @@ const tableChildRoutes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./table.component').then((c) => c.TableComponent),
+      import('../components/table/table.component').then(
+        (c) => c.TableComponent
+      ),
   },
   {
     path: 'details/:id',
     loadComponent: () =>
-      import('../product/product.component').then((c) => c.ProductComponent),
+      import('../components/product/product.component').then(
+        (c) => c.ProductComponent
+      ),
   },
 ];
 

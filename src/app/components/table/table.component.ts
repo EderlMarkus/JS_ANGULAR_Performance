@@ -1,9 +1,7 @@
 import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { CommonModule, NgFor, AsyncPipe } from '@angular/common';
-import { ProductComponent } from '../product/product.component';
 import { Product } from 'src/app/models/Product';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,7 +12,6 @@ import { ProductServiceService } from 'src/app/services/product-service.service'
   standalone: true,
   imports: [
     CommonModule,
-    ProductComponent,
     NgFor,
     AsyncPipe,
     CdkTableModule,
