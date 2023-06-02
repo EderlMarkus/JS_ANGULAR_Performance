@@ -1,3 +1,37 @@
-<ng-container *ngFor="let product of productService.products$ | async">
-  <app-product [product]="product"></app-product>
+<ng-container *ngIf="products$ | async as data">
+  <table
+    cdk-table
+    [dataSource]="data.products"
+    fixedLayout
+    [trackBy]="productsTrackBy"
+  >
+    <ng-container cdkColumnDef="brand">
+      <th cdk-header-cell *cdkHeaderCellDef>Brand</th>
+      <td cdk-cell *cdkCellDef="let product">{{ product.brand }}</td>
+    </ng-container>
+    <ng-container cdkColumnDef="title">
+      <th cdk-header-cell *cdkHeaderCellDef>Title</th>
+      <td cdk-cell *cdkCellDef="let product">{{ product.title }}</td>
+    </ng-container>
+    <ng-container cdkColumnDef="category">
+      <th cdk-header-cell *cdkHeaderCellDef>Category</th>
+      <td cdk-cell *cdkCellDef="let product">{{ product.category }}</td>
+    </ng-container>
+    <ng-container cdkColumnDef="thumbnail">
+      <th cdk-header-cell *cdkHeaderCellDef>Image</th>
+      <td cdk-cell *cdkCellDef="let product">
+        <img src="{{ product.thumbnail }}" alt="{{ product.title }}" />
+      </td>
+    </ng-container>
+    <ng-container cdkColumnDef="details">
+      <th cdk-header-cell *cdkHeaderCellDef>Details</th>
+      <td cdk-cell *cdkCellDef="let product">
+        <button routerLink="details/{{ product.id }}" mat-raised-button>
+          View Details
+        </button>
+      </td>
+    </ng-container>
+    <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+    <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
+  </table>
 </ng-container>

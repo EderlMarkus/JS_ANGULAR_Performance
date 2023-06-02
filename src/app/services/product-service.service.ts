@@ -1,11 +1,21 @@
-import { DummyProducts } from './../data/Products';
+import { HttpClient } from '@angular/common/http';
 import { Product } from './../models/Product';
-import { Observable, of } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { Observable, map } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductServiceService {
-  products$: Observable<Product[]> = of(DummyProducts);
+  http: HttpClient = inject(HttpClient);
+  apiUrl: string = 'https://dummyjson.com/products';
+  products$: Observable<Product[]> = this.http.get<Product[]>(this.apiUrl);
+
+  public getProducts() {
+    return this.http.get<Product[]>(this.apiUrl);
+  }
+
+  public getProductById(id: number) {
+    return this.http.get<Product>(`${this.apiUrl}/${id}`);
+  }
 }

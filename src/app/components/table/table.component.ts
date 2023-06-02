@@ -1,15 +1,39 @@
-import { ProductServiceService } from './../../services/product-service.service';
+import { RouterLink } from '@angular/router';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { CommonModule, NgFor, AsyncPipe } from '@angular/common';
 import { ProductComponent } from '../product/product.component';
+import { Product } from 'src/app/models/Product';
+import { CdkTableModule } from '@angular/cdk/table';
+import { MatButtonModule } from '@angular/material/button';
+import { ProductServiceService } from 'src/app/services/product-service.service';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule, ProductComponent, NgFor, AsyncPipe],
+  imports: [
+    CommonModule,
+    ProductComponent,
+    NgFor,
+    AsyncPipe,
+    CdkTableModule,
+    MatButtonModule,
+    RouterLink,
+  ],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent {
-  protected productService = inject(ProductServiceService);
+  products$: Observable<any> = inject(ProductServiceService).getProducts();
+  displayedColumns: string[] = [
+    'brand',
+    'title',
+    'category',
+    'thumbnail',
+    'details',
+  ];
+  protected productsTrackBy(index: number, product: Product) {
+    return product.id;
+  }
 }
