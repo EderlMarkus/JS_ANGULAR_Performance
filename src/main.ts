@@ -27,6 +27,6 @@ bootstrapApplication(App, {
       BrowserAnimationsModule,
       HttpClientModule
     ),
-    provideRouter(appRoutes, withPreloading(PreloadAllModules)),
+    provideRouter(appRoutes),
   ],
 });
