@@ -5,4 +5,4 @@ Example on how to use Lazy Loading and trackBy on Table for Performance.
 
 ## Live Demo
 
-https://ederlmarkus.github.io/JS_ANGULAR_Performance/about
+https://ederlmarkus.github.io/JS_ANGULAR_Performance
