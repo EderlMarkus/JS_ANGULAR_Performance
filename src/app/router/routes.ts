@@ -17,4 +17,9 @@ export const appRoutes: Routes = [
     loadChildren: () =>
       import('./table.routes').then((c) => c.tableChildRoutesModule),
   },
+  {
+    path: 'add',
+    loadComponent: () =>
+      import('../components/add/add.component').then((c) => c.AddComponent),
+  },
 ];
