@@ -6,6 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { catchError, tap, of } from 'rxjs';
 
 @Component({
   selector: 'app-add',
@@ -17,12 +19,15 @@ import { HttpClient } from '@angular/common/http';
     MatSelectModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
   ],
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })
 export class AddComponent {
   httpClient = inject(HttpClient);
+  snackBar = inject(MatSnackBar);
+
   form = new FormGroup({
     comment: new FormControl(''),
   });
@@ -34,6 +39,13 @@ export class AddComponent {
         postId: 3,
         body: this.form.controls.comment.getRawValue(),
       })
+      .pipe(
+        catchError((err) => {
+          this.snackBar.open('Fehler', 'Danke');
+          return of(null);
+        }),
+        tap((result) => result && this.snackBar.open('Gespeichert', 'Danke'))
+      )
       .subscribe();
   }
 }
