@@ -22,4 +22,11 @@ export const appRoutes: Routes = [
     loadComponent: () =>
       import('../components/add/add.component').then((c) => c.AddComponent),
   },
+  {
+    path: 'datepicker',
+    loadComponent: () =>
+      import('../components/datepicker/datepicker.component').then(
+        (c) => c.DatepickerComponent
+      ),
+  },
 ];
